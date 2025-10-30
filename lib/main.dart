@@ -27,8 +27,18 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
       appBar: AppBar(title: const Text("Calculator")),
       body: Column(
         children: [
-          Expanded(flex: 2, child: Container(color: Colors.amber)),
-          Expanded(flex: 1, child: Container(color: Colors.green)),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: const EdgeInsets.all(18),
+              child: Text("20", style: const TextStyle(fontSize: 24)),
+              alignment: Alignment.bottomRight,
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(color: const Color.fromARGB(255, 230, 223, 223)),
+          ),
           Expanded(flex: 4, child: Container(color: Colors.red)),
         ],
       ),

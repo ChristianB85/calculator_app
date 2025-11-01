@@ -24,6 +24,8 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
   String _input = "0";
   String _output = "0";
 
+  void btnPressedCallback(String sign) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,9 +55,38 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
               ),
             ),
           ),
-          Expanded(flex: 4, child: Container(color: Colors.red)),
+          Expanded(
+            flex: 4,
+            child: Column(
+              children: [
+                NumpadRow(const ["7", "8", "9", "÷"], btnPressedCallback),
+                NumpadRow(const ["4", "5", "6", "X"], btnPressedCallback),
+                NumpadRow(const ["1", "2", "3", "-"], btnPressedCallback),
+                NumpadRow(const ["0", "C", "=", "+"], btnPressedCallback),
+              ],
+            ),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class NumpadRow extends StatelessWidget {
+  const NumpadRow(this.signs, this.btnPressed, {super.key});
+  final List<String> signs;
+
+  final Function(String) btnPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: signs
+          .map(
+            (symbol) =>
+                TextButton(onPressed: btnPressed(symbol), child: Text(symbol)),
+          )
+          .toList(),
     );
   }
 }
